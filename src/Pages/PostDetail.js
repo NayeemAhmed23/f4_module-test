@@ -6,7 +6,7 @@ import { FaRegHeart } from "react-icons/fa";
 import { useSelector } from "react-redux";
 
 import { useNavigate } from "react-router-dom";
-import Post from "../Components/DetailPage";
+import Post from "../Components/Post";
 
 const PostDetail = () => {
   const openPost = useSelector((state) => state.openPost);

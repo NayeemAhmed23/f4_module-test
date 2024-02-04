@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 
 import { IoMdSearch } from "react-icons/io";
 
-import Post from "../Components/DetailPage";
+import Post from "../Components/Post";
 
 import axios from "axios";
 
 import { BsArrowClockwise } from "react-icons/bs";
 
 import { useSelector, useDispatch } from "react-redux";
-import { fetchPosts } from "../redux/features/Posts";
+import { fetchPosts } from "../redux/features/posts";
 
 const Home = () => {
   const [search, setSearch] = useState("");
