@@ -6,27 +6,27 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setOpenPost } from "../redux/features/openPostSlice";
 
-const Post = ({ Post }) => {
+const Post = ({ post }) => {
   const [readMore, setReadMore] = useState(false);
   const [isOverflowing, setIsOverflowing] = useState(false);
 
   const [image, setImage] = useState(
-    `https://picsum.photos/200?random=${Post.id}`
+    `https://picsum.photos/200?random=${post.id}`
   );
 
   const dispatch = useDispatch();
 
-  const PostBodyRef = useRef(null);
+  const postBodyRef = useRef(null);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (PostBodyRef.current) {
+    if (postBodyRef.current) {
       const isOverflowing =
-        PostBodyRef.current.scrollHeight > PostBodyRef.current.clientHeight;
+        postBodyRef.current.scrollHeight > postBodyRef.current.clientHeight;
       setIsOverflowing(isOverflowing);
     }
-  }, [Post.body]);
+  }, [post.body]);
 
   return (
     <div className="bg-white rounded-lg w-fit p-5 drop-shadow-xl">
@@ -39,21 +39,21 @@ const Post = ({ Post }) => {
       <div className="flex items-center justify-between mt-3 gap-2">
         <div className="">
           <p className="font-semibold text-lg h-9 overflow-hidden">
-            {Post.title}
+            {post.title}
           </p>
           <p
             className={`text-gray-500 h-36 text-md overflow-hidden ${
               isOverflowing ? "max-h-36" : ""
             }`}
-            ref={PostBodyRef}
+            ref={postBodyRef}
           >
-            {Post.body}
+            {post.body}
           </p>
           <span
             className="text-dark-orange font-semibold cursor-pointer"
             onClick={() => {
-              dispatch(setOpenPost({ ...Post, image }));
-              navigate(`/Post/detail/${Post.id}`);
+              dispatch(setOpenPost({ ...post, image }));
+              navigate(`/post/detail/${post.id}`);
             }}
           >
             {isOverflowing && "Read more..."}
@@ -62,8 +62,8 @@ const Post = ({ Post }) => {
         <div
           className="p-3 bg-black flex items-center cursor-pointer justify-center bg-gradient-to-r from-light-orange -rotate-90 to-dark-orange rounded-md  hover:from-dark-orange hover:to-dark-orange"
           onClick={() => {
-            navigate(`/Post/detail/${Post.id}`);
-            dispatch(setOpenPost({ ...Post, image }));
+            navigate(`/post/detail/${post.id}`);
+            dispatch(setOpenPost({ ...post, image }));
           }}
         >
           <FaAngleRight className="text-white rotate-90 text-xl" />

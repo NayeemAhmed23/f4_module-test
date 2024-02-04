@@ -9,7 +9,7 @@ import { FaBookmark } from "react-icons/fa";
 
 import { NavLink, useLocation } from "react-router-dom";
 
-const HomePage = () => {
+const Navbar = () => {
   let { pathname } = useLocation();
 
   return (
@@ -47,4 +47,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default Navbar;

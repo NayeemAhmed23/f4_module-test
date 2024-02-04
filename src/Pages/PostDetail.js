@@ -11,7 +11,7 @@ import Post from "../Components/Post";
 const PostDetail = () => {
   const openPost = useSelector((state) => state.openPost);
 
-  const Posts = useSelector((state) => state.Posts.Posts);
+  const posts = useSelector((state) => state.posts.posts);
 
   const [toggleUserDetail, setToggleUserDetail] = useState(false);
 
@@ -59,7 +59,7 @@ const PostDetail = () => {
             </div>
           </div>
           {toggleUserDetail ? (
-            <div>Post was Posted by user {openPost.userId}</div>
+            <div>Post was posted by user {openPost.userId}</div>
           ) : (
             <div className="max-h-80 h-fit overflow-hidden">
               {openPost.body}
@@ -70,10 +70,10 @@ const PostDetail = () => {
       <div>
         <div className="text-2xl font-semibold flex flex-col justify-center gap-5">
           <p>More Post</p>
-          <div className="container grid grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 flex gap-10 flex-wrap ">
-            {Posts.map((Post) => {
-              if (Post.id != openPost.id) {
-                return <Post Post={Post} key={Post.id} />;
+          <div className="container grid grid-cols-3  max-md:grid-cols-2 max-sm:grid-cols-1 flex gap-10 flex-wrap ">
+            {posts.map((post) => {
+              if (post.id != openPost.id) {
+                return <Post post={post} key={post.id} />;
               }
             })}
           </div>

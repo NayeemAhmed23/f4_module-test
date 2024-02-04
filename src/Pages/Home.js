@@ -14,12 +14,12 @@ import { fetchPosts } from "../redux/features/posts";
 const Home = () => {
   const [search, setSearch] = useState("");
 
-  const Posts = useSelector((state) => state.Posts.Posts);
+  const posts = useSelector((state) => state.posts.posts);
 
-  const loading = useSelector((state) => state.Posts.loading);
+  const loading = useSelector((state) => state.posts.loading);
 
   const [filteredPost, setFilteredPost] = useState(
-    useSelector((state) => state.Posts.Posts)
+    useSelector((state) => state.posts.posts)
   );
 
   const dispatch = useDispatch();
@@ -30,17 +30,17 @@ const Home = () => {
 
   useEffect(() => {
     let newArrr = [];
-    if (Posts) {
+    if (posts) {
       setFilteredPost(
-        Posts.filter((Post) => {
-          if (Post.title.includes(search)) {
-            return Post;
+        posts.filter((post) => {
+          if (post.title.includes(search)) {
+            return post;
           }
           return null;
         })
       );
     }
-  }, [search, Posts]);
+  }, [search, posts]);
 
   return (
     <div className="flex flex-col p-10 gap-10 bg-gray-100">
@@ -58,8 +58,8 @@ const Home = () => {
       {!loading ? (
         <div className="container grid grid-cols-3 xl:grid-cols-4 max-lg-grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 flex gap-5 flex-wrap ">
           {filteredPost &&
-            filteredPost.map((Post) => {
-              return <Post Post={Post} key={Post.id} />;
+            filteredPost.map((post) => {
+              return <Post post={post} key={post.id} />;
             })}
         </div>
       ) : (
